@@ -6,7 +6,7 @@ import sys
 
 
 IP_PATTERN = '157.125.54.*'
-PORT = 7202
+SERVER_PORT = 7202
 
 lock = threading.Lock()
 ips = []
@@ -30,7 +30,7 @@ def callback(ip, is_server):
 def sweep_done(connected_ips):
 	print('sweep done, connection to', connected_ips)
 	for ip in connected_ips:
-		launch_remote(ip, PORT)
+		launch_remote(ip, SERVER_PORT)
 
 def launch_remote(ip, port):
 	conn = http.client.HTTPConnection(ip, port)
@@ -76,6 +76,6 @@ def scan_network(ip_pattern, port, connected_ips=[]):
 	# return connected_ips
 
 
-# print(scan_network(IP_PATTERN, PORT))
+# print(scan_network(IP_PATTERN, SERVER_PORT))
 # print(multiprocessing.cpu_count())
-scan_network(IP_PATTERN, PORT)
+scan_network(IP_PATTERN, SERVER_PORT)
